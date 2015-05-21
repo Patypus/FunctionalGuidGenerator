@@ -1,15 +1,15 @@
 ﻿open System;
 
-let UsageMessage = "This utility takes 2 parameters: \n1) the required length of the Guid \n2) the required number of GUIDs";
+let UsageMessage = "This utility takes 2 parameters: \n1) the required length of each guid \n2) the required number of guids";
 
 let MakeGuid length =
     Guid.NewGuid().ToString().Replace("-", "").Substring(0, length);
 
-let rec RecurseToCreate possition maximum length createFunction =
-    printfn "%s" (createFunction length)
-    let incrementedPossition = possition + 1;
-    if incrementedPossition <= maximum then 
-        RecurseToCreate incrementedPossition maximum length createFunction
+let rec RecurseToCreate createdGuids totalGuidsToCreate guidLength createFunction =
+    printfn "%s" (createFunction guidLength)
+    let incrementedPosition = createdGuids + 1;
+    if incrementedPosition <= totalGuidsToCreate then 
+        RecurseToCreate incrementedPosition totalGuidsToCreate guidLength createFunction
 
 [<EntryPoint>]
 let main argv =
