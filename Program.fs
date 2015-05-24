@@ -1,6 +1,9 @@
 ﻿open System;
 
-let UsageMessage = "This utility takes 3 parameters: \n1) The required length of each guid \n2) The required number of guids \n3) Y/N if dashes are required in the guids";
+let UsageMessage = "This utility takes 2 parameters and an optional 3rd: 
+                    \n1) The required length of each guid 
+                    \n2) The required number of guids 
+                    \n3) [optional] Y if dashes are required in the guids. If not specified or given as 'N' no dashes will be included.";
 
 let MakeGuidWithNoDashes length =
     Guid.NewGuid().ToString().Replace("-", "").Substring(0, length);
@@ -28,5 +31,6 @@ let CreateGuids totalGuidsRequired guidLength dashesRequired =
 let main argv =
     match argv.Length with
     | 3 -> CreateGuids (Int32.Parse(argv.[1])) (Int32.Parse(argv.[0])) argv.[2]
+    | 2 -> CreateGuids (Int32.Parse(argv.[1])) (Int32.Parse(argv.[0])) "N"
     | _ -> printfn "%s" UsageMessage
     0
