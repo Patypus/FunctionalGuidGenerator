@@ -54,9 +54,11 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
-    <Compile Include="Program.fs" />
     <None Include="App.config" />
     <EmbeddedResource Include="Resources.resx" />
+    <Compile Include="GuidGenerationFunctions.fs" />
+    <Compile Include="GuidGenerator.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
