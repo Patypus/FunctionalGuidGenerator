@@ -1,9 +1,11 @@
 ﻿open System;
+open System.Reflection;
+open System.Resources;
 
-let UsageMessage = "This utility takes 2 parameters and an optional 3rd: 
-                    \n1) The required length of each guid 
-                    \n2) The required number of guids 
-                    \n3) [optional] Y if dashes are required in the guids. If not specified or given as 'N' no dashes will be included.";
+let Assembly = Assembly.GetExecutingAssembly()
+let Resources = new ResourceManager("Resources", Assembly);
+
+let UsageMessage = Resources.GetString("UsageMessage");
 
 let MakeGuidWithNoDashes length =
     Guid.NewGuid().ToString().Replace("-", "").Substring(0, length);
